@@ -2,6 +2,15 @@
 
 Arduino-based automotive telemetry project using two Arduino Uno boards and MCP2515 CAN modules.
 
+## System Overview
+
+![V10 CAN Bus System Diagram](docs/v10_system_diagram.png)
+
+**Figure:** V10 two-node Arduino CAN bus diagnostic dashboard and data logger.  
+The sender node simulates vehicle telemetry and reads MPU6050 acceleration data, then transmits CAN frames to the receiver node.  
+The receiver node decodes CAN messages, displays telemetry on a 16x2 LCD, and logs CSV data to a microSD card.
+
+
 ## Features
 
 - Simulated vehicle speed, RPM, coolant temperature, and battery voltage
