@@ -15,6 +15,7 @@ The receiver node decodes CAN messages, displays telemetry on a 16x2 LCD, and lo
 
 - Simulated vehicle speed, RPM, coolant temperature, and battery voltage
 - CAN communication between sender and receiver
+- MPU6050 acceleration sensing over I2C
 - SPI communication with MCP2515 and microSD card
 - CSV telemetry logging to microSD
 - Checksum generation
@@ -25,6 +26,7 @@ The receiver node decodes CAN messages, displays telemetry on a 16x2 LCD, and lo
 
 - 2x Arduino Uno
 - 2x MCP2515 CAN modules
+- MPU6050 accelerometer
 - microSD card module
 - 16x2 LCD
 - LED
@@ -32,9 +34,18 @@ The receiver node decodes CAN messages, displays telemetry on a 16x2 LCD, and lo
 
 ## Communication
 
-- CAN: sender to receiver communication
+- CAN: sender-to-receiver vehicle telemetry transmission
 - SPI: Arduino to MCP2515 and microSD card
+- I2C: Arduino to MPU6050
 - UART: Serial Monitor debugging
+
+## CAN Message Format
+
+| CAN ID | Payload | Length |
+|---|---|---:|
+| `0x100` | Speed + RPM | 3 bytes |
+| `0x101` | Temperature + Voltage | 4 bytes |
+| `0x102` | Acceleration X / Y / Z | 6 bytes |
 
 ## Development
 
@@ -46,3 +57,4 @@ The receiver node decodes CAN messages, displays telemetry on a 16x2 LCD, and lo
 - V7 - LCD dashboard
 - V8 - CAN loopback testing
 - V9 - CAN sender and receiver
+- V10 - MPU6050 I2C integration and acceleration data transmission over CAN
